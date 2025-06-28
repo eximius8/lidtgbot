@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lidtgbot"
+dynamic = ["version"]
+authors = [
+  { name="Mikhail Trunov", email="mikhail@trunov.me" },
+]
+description = "Package for Leben in Deutschland test telegram bot"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "python-telegram-bot==22.1",
+    "google-cloud-firestore==2.21.0",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/eximius8/lidtgbot"
+
+[tool.hatch.version]
+source = "vcs"
