@@ -31,7 +31,7 @@ class QuestionRepository:
             }
             
             # Use question number as document ID for easy retrieval
-            doc_ref = self.collection.document(str(num))
+            doc_ref = self.collection.document(num)
             doc_ref.set(question_data)
             
             logger.info(f"Question {num} created successfully")
@@ -44,7 +44,7 @@ class QuestionRepository:
     async def get_question(self, num: str) -> Optional[Question]:
         """Get question by num"""
         try:
-            doc_ref = self.collection.document(str(num))
+            doc_ref = self.collection.document(num)
             doc = doc_ref.get()
             
             if doc.exists:
