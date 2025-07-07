@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 from google.cloud.firestore import CollectionReference
 from lidtgbot.models.user import User
@@ -20,7 +20,7 @@ class UserRepository:
                          last_name: Optional[str] = None, language_code: Optional[str] = None) -> User:
         """Create a new user in the database"""
         try:
-            now = datetime.utcnow()
+            now = datetime.now(timezone.utc)
             user_data = {
                 'user_id': user_id,
                 'first_name': first_name,

@@ -5,7 +5,7 @@ from datetime import datetime
 
 @dataclass
 class Question:
-    num: int
+    num: str
     solution: Literal['a', 'b', 'c', 'd']
     created_at: datetime
     updated_at: datetime

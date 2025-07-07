@@ -8,6 +8,7 @@ from google.cloud.firestore import Client
 
 logger = logging.getLogger(__name__)
 
+
 class FirestoreClient:
     """Simple Firestore client for Leben in Deutschland test bot"""
     
