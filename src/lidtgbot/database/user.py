@@ -53,6 +53,7 @@ class UserRepository:
             creation_data = {
                 'created_at': now,
                 'total_questions_answered': 0,
+                'federal_state': None
             }
             
             # First, try to get the document to see if it exists
@@ -79,7 +80,8 @@ class UserRepository:
                     total_questions_answered=existing_data.get('total_questions_answered', 0),
                     username=existing_data.get('username'),
                     last_name=existing_data.get('last_name'),
-                    language_code=existing_data.get('language_code')
+                    language_code=existing_data.get('language_code'),
+                    federal_state=existing_data.get('federal_state', None)
                 )
             else:
                 # User doesn't exist - create with all data
@@ -115,7 +117,8 @@ class UserRepository:
                     total_questions_answered=data.get('total_questions_answered', 0),
                     username=data.get('username'),
                     last_name=data.get('last_name'),
-                    language_code=data.get('language_code')
+                    language_code=data.get('language_code'),
+                    federal_state=data.get('federal_state', None)
                 )
             return None
         
