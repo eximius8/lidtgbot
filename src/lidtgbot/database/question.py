@@ -18,6 +18,7 @@ class QuestionRepository:
     
     async def create_question(self, num: str, 
                               solution: Literal['a', 'b', 'c', 'd'], 
+                              category: str,
                               image: str | None = None) -> Question:
         """Create a new question in the database"""
         try:
@@ -25,6 +26,7 @@ class QuestionRepository:
             question_data = {
                 'num': num,
                 'solution': solution,
+                'category': category,
                 'image': image,
                 'created_at': now,
                 'updated_at': now,
@@ -56,6 +58,7 @@ class QuestionRepository:
                 return Question(
                     num=data['num'],
                     solution=data['solution'],
+                    category=data['category'],
                     image=data.get('image', None),
                     created_at=data['created_at'],
                     updated_at=data['updated_at']
