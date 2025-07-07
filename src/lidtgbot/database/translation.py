@@ -1,5 +1,5 @@
 import logging
-from typing import Optional, Literal
+from typing import Literal
 from google.cloud.firestore import CollectionReference
 from lidtgbot.models.translation import Translation
 from lidtgbot.database.firestore_client import firestore_client
@@ -58,7 +58,7 @@ class TranslationRepository:
             logger.error(f"Failed to create translation for {language_code}: {e}")
             raise
     
-    async def get_translation(self, language_code: LanguageCode) -> Optional[Translation]:
+    async def get_translation(self, language_code: LanguageCode) -> Translation | None:
         """Get Translation by language code"""
         try:
             doc_ref = self.collection.document(language_code)

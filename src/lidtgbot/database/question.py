@@ -1,6 +1,6 @@
 import logging
 from datetime import datetime, timezone
-from typing import Optional, Literal
+from typing import Literal
 from google.cloud.firestore import CollectionReference
 from lidtgbot.models.question import Question
 from lidtgbot.database.firestore_client import firestore_client
@@ -43,7 +43,7 @@ class QuestionRepository:
             logger.error(f"Failed to create question {num}: {e}")
             raise
     
-    async def get_question(self, num: str) -> Optional[Question]:
+    async def get_question(self, num: str) -> Question | None:
         """Get question by num"""
         try:
             doc_ref = self.collection.document(num)

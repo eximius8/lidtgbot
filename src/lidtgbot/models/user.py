@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
+from lidtgbot.models.federal_state import FederalState
 
 
 @dataclass
@@ -12,3 +13,4 @@ class User:
     username: str | None = None
     last_name: str | None = None
     language_code: str | None = None
+    federal_state: FederalState | None = None

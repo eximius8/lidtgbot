@@ -1,6 +1,5 @@
 import logging
 from datetime import datetime, timezone
-from typing import Optional
 from google.cloud.firestore import CollectionReference
 from lidtgbot.models.user import User
 from lidtgbot.database.firestore_client import firestore_client
@@ -16,8 +15,8 @@ class UserRepository:
             raise RuntimeError("Firestore client is not initialized")
         self.collection: CollectionReference = firestore_client.db.collection('users')
     
-    async def ensure_user(self, user_id: int, first_name: str, username: Optional[str] = None,
-                         last_name: Optional[str] = None, language_code: Optional[str] = None,
+    async def ensure_user(self, user_id: int, first_name: str, username: str | None = None,
+                         last_name: str | None = None, language_code: str | None = None,
                          update_activity: bool = False) -> User:
         """
         Ensure user exists with a single Firestore operation.
@@ -97,7 +96,7 @@ class UserRepository:
             raise
     
     # Keep original methods for backward compatibility
-    async def get_user(self, user_id: int) -> Optional[User]:
+    async def get_user(self, user_id: int) -> User | None:
         """Get user by ID"""
         try:
             doc_ref = self.collection.document(str(user_id))
@@ -124,8 +123,8 @@ class UserRepository:
             logger.error(f"Failed to get user {user_id}: {e}")
             raise
     
-    async def get_or_create_user(self, user_id: int, first_name: str, username: Optional[str] = None,
-                                last_name: Optional[str] = None, language_code: Optional[str] = None) -> User:
+    async def get_or_create_user(self, user_id: int, first_name: str, username: str | None = None,
+                                last_name: str | None = None, language_code: str | None = None) -> User:
         """Backward compatibility method - delegates to ensure_user"""
         return await self.ensure_user(user_id, first_name, username, last_name, language_code, update_activity=False)
     

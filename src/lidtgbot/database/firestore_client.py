@@ -1,7 +1,6 @@
 import os
 import json
 import logging
-from typing import Optional
 import firebase_admin
 from firebase_admin import credentials, firestore
 from google.cloud.firestore import Client
@@ -13,7 +12,7 @@ class FirestoreClient:
     """Simple Firestore client for Leben in Deutschland test bot"""
     
     def __init__(self):
-        self.db: Optional[Client] = None
+        self.db: Client | None = None
         self._initialize_firebase()
     
     def _initialize_firebase(self):
